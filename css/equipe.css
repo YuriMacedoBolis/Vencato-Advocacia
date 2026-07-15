@@ -1,0 +1,83 @@
+/* =========================================================
+   Vencato e Cardoso — Equipe (equipe.css)
+   Sócios em linhas editoriais + colaboradores em cards com foto.
+   Requer style.css carregado antes.
+   ========================================================= */
+
+/* ---------- Hero ---------- */
+.eq-hero{position:relative;background:var(--tinta);color:#fff;padding:190px 0 84px;overflow:hidden}
+.eq-hero::after{content:'';position:absolute;right:-90px;top:-90px;width:380px;height:380px;border:1px solid rgba(176,138,80,.25);transform:rotate(45deg)}
+.eq-hero .container{position:relative;z-index:1}
+.eq-hero h1{color:#fff;font-size:clamp(2.6rem,6.5vw,5rem);margin:22px 0 0}
+.eq-hero .lead{color:rgba(255,255,255,.74);max-width:54ch;font-size:1.15rem;margin-top:24px}
+@keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.eq-hero .rotulo{animation:heroUp .7s ease both}
+.eq-hero h1{animation:heroUp .7s ease .1s both}
+.eq-hero .lead{animation:heroUp .7s ease .2s both}
+
+/* ---------- Sócios (linhas editoriais alternadas) ---------- */
+.socios-ed{padding:100px 0}
+.socio-linha{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center;margin-bottom:100px}
+.socio-linha:last-child{margin-bottom:0}
+.socio-linha:nth-child(even){grid-template-columns:1.15fr .85fr}
+.socio-linha:nth-child(even) .socio-media{order:2}
+
+.socio-media{position:relative}
+.socio-media::before{content:'';position:absolute;top:20px;left:20px;right:-20px;bottom:-20px;border:1px solid rgba(176,138,80,.45);z-index:0;transition:all var(--transicao)}
+.socio-linha:nth-child(even) .socio-media::before{left:-20px;right:20px}
+.socio-media .foto{position:relative;z-index:1;aspect-ratio:4/5;background:var(--bege);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--cinza-claro);font-size:.82rem;padding:24px;overflow:hidden;box-shadow:0 30px 60px -28px rgba(31,28,23,.45)}
+.socio-media .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.socio-linha:hover .socio-media .foto img{transform:scale(1.04)}
+.socio-linha:hover .socio-media::before{top:14px;left:14px;right:-14px;bottom:-14px}
+.socio-linha:nth-child(even):hover .socio-media::before{left:-14px;right:14px}
+.socio-idx{position:absolute;top:-30px;left:-10px;font-family:var(--serif);font-size:clamp(3.5rem,8vw,7rem);color:var(--dourado);opacity:.16;line-height:1;pointer-events:none;z-index:2}
+
+.socio-corpo .rotulo{margin-bottom:16px}
+.socio-corpo h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.socio-corpo .cargo{color:var(--dourado-escuro);font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin:8px 0 22px}
+.socio-corpo p{margin-bottom:16px}
+
+/* marcos numéricos que quebram o texto */
+.socio-marcos{display:flex;gap:30px;flex-wrap:wrap;margin:24px 0 20px;padding-top:24px;border-top:1px solid var(--bege-escuro)}
+.socio-marcos strong{display:block;font-family:var(--serif);font-size:1.7rem;color:var(--dourado-escuro);line-height:1}
+.socio-marcos span{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza-claro);margin-top:6px;display:block;max-width:16ch}
+
+.socio-tags{display:flex;flex-wrap:wrap;gap:8px}
+.socio-tags span{border:1px solid var(--bege-escuro);padding:6px 12px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grafite);transition:all var(--transicao)}
+.socio-tags span:hover{border-color:var(--dourado);color:var(--dourado-escuro)}
+
+/* ---------- Colaboradores (cards com foto) ---------- */
+.assoc-ed{background:var(--marfim);padding:90px 0}
+.eq-topo{margin-bottom:36px}
+.eq-topo h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-top:12px}
+.assoc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.colab{position:relative;background:#fff;border:1px solid var(--bege-escuro);overflow:hidden;transition:transform var(--transicao),box-shadow var(--transicao)}
+.colab:hover{transform:translateY(-6px);box-shadow:0 26px 54px -22px rgba(31,28,23,.28)}
+.colab-foto{position:relative;aspect-ratio:3/4;background:var(--bege);border-bottom:1px solid var(--bege-escuro);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--cinza-claro);font-size:.78rem;padding:20px;overflow:hidden}
+.colab-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.colab:hover .colab-foto img{transform:scale(1.06)}
+.colab-idx{position:absolute;top:0;left:0;z-index:2;font-family:var(--serif);color:#fff;background:var(--dourado);width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.colab-info{padding:22px 24px 28px}
+.colab-info h3{font-size:1.2rem}
+.colab-cargo{color:var(--dourado-escuro);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:7px 0 13px}
+.colab-bio{font-size:.9rem;color:var(--grafite)}
+
+/* ---------- CTA ---------- */
+.eq-cta{background:var(--tinta);color:#fff;padding:90px 0;text-align:center}
+.eq-cta h2{color:#fff;font-size:clamp(1.8rem,3.4vw,2.6rem);margin:16px auto 28px;max-width:22ch}
+.eq-cta .rotulo{color:var(--dourado)}
+.eq-cta-acoes{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- Responsivo ---------- */
+@media(max-width:900px){
+  .assoc-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:820px){
+  .socio-linha,.socio-linha:nth-child(even){grid-template-columns:1fr;gap:44px;margin-bottom:70px}
+  .socio-linha:nth-child(even) .socio-media{order:0}
+  .socio-media::before,.socio-linha:nth-child(even) .socio-media::before{top:14px;left:14px;right:-14px;bottom:-14px}
+  .socio-idx{font-size:3.4rem;top:-22px;left:-4px}
+}
+@media(max-width:560px){
+  .assoc-grid{grid-template-columns:1fr}
+}

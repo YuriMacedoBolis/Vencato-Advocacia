@@ -22,8 +22,8 @@
     <nav class="nav" id="nav">
       <div class="nav-item"><a href="home.html" class="nav-link">Início</a></div>
       <div class="nav-item">
-        <a href="home.html#sobre" class="nav-link">Institucional <i class="seta"></i></a>
-        <div class="dropdown"><a href="home.html#sobre">Sobre Nós</a><a href="home.html#equipe">Equipe</a></div>
+        <a href="institucional.html" class="nav-link">Institucional <i class="seta"></i></a>
+        <div class="dropdown"><a href="institucional.html">Sobre Nós</a><a href="equipe.html">Equipe</a></div>
       </div>
       <div class="nav-item"><a href="areas.html" class="nav-link ativo">Áreas de Atuação</a></div>
       <div class="nav-item"><a href="blog.html" class="nav-link">Blog e Livros</a></div>
@@ -53,6 +53,11 @@
     <div class="solucoes-topo">
       <h2>Nossas Soluções</h2>
       <p>Escolha o seu perfil e explore as áreas em que podemos ajudar.</p>
+    </div>
+
+    <div class="painel-tabs">
+      <button class="painel-tab ativo" data-alvo="pf">Pessoa Física</button>
+      <button class="painel-tab" data-alvo="pj">Pessoa Jurídica</button>
     </div>
 
     <div class="painel-areas" id="painel">
@@ -125,7 +130,7 @@
       </div>
       <div>
         <h4>Navegação</h4>
-        <ul><li><a href="home.html">Início</a></li><li><a href="home.html#sobre">Institucional</a></li><li><a href="areas.html">Áreas de Atuação</a></li><li><a href="blog.html">Blog e Livros</a></li><li><a href="contato.html">Contato</a></li></ul>
+        <ul><li><a href="home.html">Início</a></li><li><a href="institucional.html">Institucional</a></li><li><a href="areas.html">Áreas de Atuação</a></li><li><a href="blog.html">Blog e Livros</a></li><li><a href="contato.html">Contato</a></li></ul>
       </div>
       <div>
         <h4>Contato</h4>
@@ -149,8 +154,14 @@
 <script>
 // Sliding Overlay Panel — equivale ao estado isPessoaJuridica
 const painel=document.getElementById('painel');
-document.getElementById('btn-ver-pj').addEventListener('click',()=>painel.classList.add('pj'));   // isPessoaJuridica = true
-document.getElementById('btn-ver-pf').addEventListener('click',()=>painel.classList.remove('pj')); // isPessoaJuridica = false
+const tabs=document.querySelectorAll('.painel-tab');
+function setPerfil(pj){
+  painel.classList.toggle('pj',pj);
+  tabs.forEach(t=>t.classList.toggle('ativo',(t.dataset.alvo==='pj')===pj));
+}
+document.getElementById('btn-ver-pj').addEventListener('click',()=>setPerfil(true));   // isPessoaJuridica = true
+document.getElementById('btn-ver-pf').addEventListener('click',()=>setPerfil(false));  // isPessoaJuridica = false
+tabs.forEach(t=>t.addEventListener('click',()=>setPerfil(t.dataset.alvo==='pj')));
 
 // ---- Conteúdo detalhado de cada área (modal) ----
 const areas={

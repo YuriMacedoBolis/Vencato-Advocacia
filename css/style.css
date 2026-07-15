@@ -19,7 +19,7 @@
   --sans:'Archivo',system-ui,sans-serif;
   --largura:1200px;
   --transicao:300ms ease-in-out;
-  --transicao-nav:100ms ease-in-out;
+  --transicao-nav:200ms ease-in-out;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}

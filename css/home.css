@@ -20,12 +20,10 @@
   position:absolute;inset:0;
   background:linear-gradient(135deg,#2B2721,#1F1C17);
   color:rgba(255,255,255,.28);
+  background: url('../assets/img/Ponte\ JK.jpg') center/cover no-repeat;
+
 }
-.hero-img::after{
-  content:'IMAGEM DO HERO — Ponte JK / Brasília, versão mais viva e vibrante (substituir a atual, apagada)';
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:40px;font-size:.85rem;letter-spacing:.05em;max-width:640px;margin:auto;
-}
+
 .hero-veu{position:absolute;inset:0;background:linear-gradient(90deg,rgba(31,28,23,.82) 0%,rgba(31,28,23,.5) 60%,rgba(31,28,23,.3) 100%)}
 .hero-conteudo{position:relative;z-index:2;padding-top:100px}
 .hero .rotulo{color:var(--dourado)}
@@ -91,23 +89,28 @@
 
 /* Equipe */
 .equipe{background:var(--marfim)}
-.grid-socios{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px}
-.socio{background:#fff;display:grid;grid-template-columns:200px 1fr;border:1px solid var(--bege-escuro);transition:box-shadow var(--transicao)}
+.grid-socios{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:24px}
+.socio{background:#fff;display:grid;grid-template-columns:260px 1fr;border:1px solid var(--bege-escuro);transition:box-shadow var(--transicao);overflow:hidden}
 .socio:hover{box-shadow:0 20px 50px rgba(31,28,23,.1)}
-.socio-foto{min-height:280px}
-.socio-info{padding:32px 30px}
-.socio-info h3{font-size:1.4rem}
+.socio-foto{min-height:340px;position:relative;overflow:hidden}
+.socio-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.socio:hover .socio-foto img{transform:scale(1.04)}
+.socio-info{padding:36px 34px}
+.socio-info h3{font-size:1.5rem}
 .socio-cargo{color:var(--dourado-escuro);font-size:.74rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin:6px 0 16px}
-.socio-info p{font-size:.9rem}
+.socio-info p{font-size:.92rem}
 .grid-assoc{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.assoc{background:#fff;padding:28px 26px;border:1px solid var(--bege-escuro);position:relative;transition:transform var(--transicao)}
-.assoc::before{content:'';position:absolute;top:0;left:0;width:0;height:3px;background:var(--dourado);transition:width var(--transicao)}
-.assoc:hover{transform:translateY(-4px)}
+.assoc{background:#fff;border:1px solid var(--bege-escuro);position:relative;overflow:hidden;transition:transform var(--transicao),box-shadow var(--transicao)}
+.assoc::before{content:'';position:absolute;top:0;left:0;width:0;height:3px;background:var(--dourado);z-index:2;transition:width var(--transicao)}
+.assoc:hover{transform:translateY(-5px);box-shadow:0 18px 42px rgba(31,28,23,.12)}
 .assoc:hover::before{width:100%}
-.assoc-foto{width:64px;height:64px;border-radius:50%;background:var(--bege);border:1px dashed var(--bege-escuro);margin-bottom:18px;display:flex;align-items:center;justify-content:center;font-size:.55rem;color:var(--cinza-claro);text-align:center}
-.assoc h3{font-size:1.1rem}
-.assoc .socio-cargo{margin:6px 0 10px}
-.assoc p{font-size:.86rem}
+.assoc-foto{position:relative;aspect-ratio:5/4;background:var(--bege);border-bottom:1px dashed var(--bege-escuro);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--cinza-claro);font-size:.72rem;padding:16px;overflow:hidden}
+.assoc-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.assoc:hover .assoc-foto img{transform:scale(1.05)}
+.assoc-info{padding:22px 24px 26px}
+.assoc-info h3{font-size:1.18rem}
+.assoc-info .socio-cargo{margin:7px 0 12px}
+.assoc-info p{font-size:.88rem}
 
 /* Blog e Livros (resumo) */
 .grid-livros{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
