@@ -1,0 +1,260 @@
+/* =========================================================
+   Vencato e Cardoso — Estilos compartilhados (style.css)
+   Design system + componentes comuns a todas as páginas:
+   tokens, reset, cabeçalho/navbar, botões, rodapé, WhatsApp.
+   ========================================================= */
+
+:root{
+  --branco:#FFFFFF;
+  --marfim:#FAF7F1;
+  --bege:#EFE8DA;
+  --bege-escuro:#D9CDB6;
+  --dourado:#B08A50;
+  --dourado-escuro:#8C6B39;
+  --tinta:#1F1C17;
+  --tinta-suave:#2B2721;
+  --grafite:#4C463B;
+  --cinza-claro:#8A8377;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Archivo',system-ui,sans-serif;
+  --largura:1200px;
+  --transicao:300ms ease-in-out;
+  --transicao-nav:100ms ease-in-out;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:var(--sans);
+  color:var(--grafite);
+  background:var(--branco);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ---------- Utilitários ---------- */
+.container{max-width:var(--largura);margin:0 auto;padding:0 24px}
+.rotulo{
+  font-family:var(--sans);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--dourado);
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+}
+.rotulo::before{content:'';width:32px;height:1px;background:var(--dourado)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-height:1.12}
+
+/* ---------- Botões — preenchimento deslizante no hover ---------- */
+.btn{
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--sans);font-weight:600;font-size:.82rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:15px 30px;border:1px solid currentColor;
+  background:transparent;overflow:hidden;cursor:pointer;z-index:1;
+  transition:color var(--transicao);
+}
+.btn::before{content:"";position:absolute;top:0;left:0;width:0;height:100%;transition:width .35s ease-in-out;z-index:-1}
+.btn:hover::before{width:100%}
+.btn-dourado{color:var(--dourado-escuro);border-color:var(--dourado)}
+.btn-dourado::before{background:var(--dourado)}
+.btn-dourado:hover{color:#fff}
+.btn-contorno{color:var(--dourado-escuro);border-color:var(--dourado)}
+.btn-contorno::before{background:var(--dourado)}
+.btn-contorno:hover{color:#fff}
+.btn-claro{color:#fff;border-color:rgba(255,255,255,.6)}
+.btn-claro::before{background:#fff}
+.btn-claro:hover{color:var(--tinta)}
+
+/* Link com seta (usado em Home e Blog) */
+.link-seta{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dourado-escuro);display:inline-flex;align-items:center;gap:8px;position:relative}
+.link-seta::after{content:'→';transition:transform var(--transicao)}
+.link-seta:hover::after{transform:translateX(5px)}
+
+/* Placeholder de imagem */
+.img-placeholder{
+  position:relative;background:var(--bege);
+  border:1px dashed var(--bege-escuro);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cinza-claro);text-align:center;
+  font-size:.8rem;letter-spacing:.04em;padding:20px;
+  min-height:220px;
+}
+.img-placeholder span{max-width:80%}
+.img-placeholder::after{
+  content:'IMAGEM';position:absolute;top:12px;left:12px;
+  font-size:.62rem;font-weight:700;letter-spacing:.2em;
+  color:var(--dourado-escuro);background:rgba(255,255,255,.6);
+  padding:4px 8px;
+}
+
+/* ---------- Cabeçalho / Nav flutuante ---------- */
+.cabecalho{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 0;transition:all var(--transicao);
+  background:transparent;
+}
+.cabecalho.rolado{
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  padding:12px 0;
+  box-shadow:0 1px 0 rgba(0,0,0,.06);
+}
+.cabecalho-int{display:flex;align-items:center;justify-content:space-between;gap:20px}
+
+.marca{display:flex;align-items:center;gap:12px}
+.marca-simbolo{
+  width:38px;height:38px;flex:none;
+  border:1.5px solid currentColor;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:700;font-size:1.1rem;
+}
+.marca-texto{line-height:1.15}
+.marca-texto strong{font-family:var(--serif);font-weight:600;font-size:1.05rem;display:block}
+.marca-texto small{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;opacity:.75}
+.cabecalho .marca{color:#fff}
+.cabecalho.rolado .marca{color:var(--tinta)}
+
+/* Navegação */
+.nav{display:flex;align-items:center;gap:34px}
+.nav-item{position:relative}
+.nav-link{
+  position:relative;
+  font-family:var(--sans);font-size:.82rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 0;display:inline-flex;align-items:center;gap:6px;
+  color:rgba(255,255,255,.9);
+  transition:color var(--transicao-nav);
+}
+.cabecalho.rolado .nav-link{color:var(--grafite)}
+.nav-link::after{
+  content:'';position:absolute;left:0;bottom:0;
+  width:0%;height:2px;background:var(--dourado);
+  transition:width var(--transicao-nav);
+}
+.nav-link:hover{color:var(--dourado)}
+.cabecalho.rolado .nav-link:hover{color:var(--dourado-escuro)}
+.nav-link:hover::after{width:100%}
+.nav-link.ativo::after{width:100%}
+.nav-item:hover .nav-link::after{width:100%}
+.nav-item:hover .nav-link{color:var(--dourado)}
+
+/* seta do dropdown */
+.seta{width:8px;height:8px;border-right:1.5px solid;border-bottom:1.5px solid;transform:rotate(45deg);margin-bottom:3px;transition:transform var(--transicao-nav)}
+.nav-item:hover .seta{transform:rotate(225deg);margin-bottom:-1px}
+
+/* Dropdown */
+.dropdown{
+  position:absolute;top:100%;left:-16px;margin-top:16px;
+  background:#fff;min-width:224px;padding:10px;
+  border:1px solid rgba(31,28,23,.06);
+  border-radius:14px;
+  box-shadow:0 24px 48px -12px rgba(31,28,23,.22),0 2px 8px rgba(31,28,23,.06);
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity var(--transicao),transform var(--transicao),visibility var(--transicao);
+}
+/* ponte invisível: mantém o hover ao mover o mouse do gatilho até o menu */
+.dropdown::before{content:'';position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{
+  display:block;padding:11px 16px;font-size:.82rem;
+  letter-spacing:.04em;color:var(--grafite);
+  border-radius:9px;position:relative;
+  transition:background var(--transicao),color var(--transicao),padding var(--transicao);
+}
+.dropdown a::before{
+  content:'';position:absolute;left:9px;top:50%;transform:translateY(-50%);
+  width:0;height:0;border-radius:50%;background:var(--dourado);
+  transition:width var(--transicao),height var(--transicao);
+}
+.dropdown a:hover{background:rgba(176,138,80,.1);color:var(--tinta);padding-left:26px}
+.dropdown a:hover::before{width:5px;height:5px}
+
+/* botão hamburguer (mobile) */
+.hamburguer{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.hamburguer span{width:24px;height:2px;background:#fff;transition:all var(--transicao)}
+.cabecalho.rolado .hamburguer span{background:var(--tinta)}
+.nav-contato{display:none}
+
+/* ---------- Topo de página interna (Áreas / Blog / Contato) ---------- */
+.pagina-topo{background:var(--tinta);color:#fff;padding:170px 0 70px;position:relative;overflow:hidden}
+.pagina-topo::after{content:'';position:absolute;right:-80px;top:-80px;width:340px;height:340px;border:1px solid rgba(176,138,80,.25);transform:rotate(45deg)}
+.pagina-topo h1{color:#fff;font-size:clamp(2.4rem,5vw,3.6rem);margin:18px 0 14px}
+.pagina-topo p{color:rgba(255,255,255,.72);max-width:56ch;font-size:1.05rem}
+
+/* ---------- Rodapé ---------- */
+.rodape{background:var(--tinta-suave);color:rgba(255,255,255,.7);padding:40px 0 20px;font-size:.85rem}
+.rodape-grid{display:grid;grid-template-columns:1.4fr 1fr 1.6fr;gap:40px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.12)}
+.rodape h4{color:#fff;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+.rodape .marca{color:#fff;margin-bottom:12px}
+.rodape ul{list-style:none}
+.rodape ul li{margin-bottom:8px}
+.rodape a{transition:color var(--transicao)}
+.rodape a:hover{color:var(--dourado)}
+.rodape-contato li{display:flex;gap:10px;margin-bottom:9px;align-items:flex-start}
+.rodape-contato .ic{color:var(--dourado);flex:none}
+.rodape-fim{padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.74rem;color:rgba(255,255,255,.45)}
+
+/* ---------- WhatsApp flutuante ---------- */
+.whats{
+  position:fixed;bottom:26px;right:26px;z-index:90;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.4);
+  transition:transform var(--transicao);
+}
+.whats:hover{transform:scale(1.08)}
+.whats svg{width:30px;height:30px;fill:#fff}
+
+/* ---------- Reveal ao rolar ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visivel{opacity:1;transform:none}
+
+/* ---------- Responsivo (comum) ---------- */
+@media(max-width:900px){
+  /* ---- Menu mobile: overlay em tela cheia ---- */
+  .nav{
+    position:fixed;inset:0;z-index:1;
+    width:100%;height:100vh;height:100dvh;
+    background:var(--tinta);
+    flex-direction:column;align-items:flex-start;justify-content:center;
+    gap:4px;padding:100px 40px 120px;
+    transform:none;opacity:0;visibility:hidden;
+    transition:opacity .35s ease,visibility .35s ease;
+  }
+  .nav.aberta{opacity:1;visibility:visible}
+  .nav-item{width:100%;text-align:left}
+  .nav-link{color:#fff!important;font-size:1.35rem;font-weight:500;letter-spacing:.14em;padding:12px 0;justify-content:flex-start}
+  .nav-link .seta{opacity:.6}
+  /* submenu Institucional: centralizado e discreto */
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:transparent;border:none;border-radius:0;margin:2px 0 6px;padding:0;text-align:left}
+  .dropdown::before{display:none}
+  .dropdown a{color:rgba(255,255,255,.55);padding:6px 0 6px 16px;border-radius:0;font-size:.92rem;letter-spacing:.06em;justify-content:flex-start}
+  .dropdown a:hover{background:none;color:#fff}
+  .dropdown a:hover::before{width:0;height:0}
+  /* logo e botão sempre acima do overlay */
+  .marca{position:relative;z-index:3}
+  .hamburguer{display:flex;position:relative;z-index:3}
+  /* estado aberto: logo e "X" em branco sobre o overlay escuro */
+  .cabecalho.menu-aberto .marca{color:#fff}
+  .cabecalho.menu-aberto .hamburguer span{background:#fff}
+  .cabecalho.menu-aberto .hamburguer span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .cabecalho.menu-aberto .hamburguer span:nth-child(2){opacity:0}
+  .cabecalho.menu-aberto .hamburguer span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  /* contatos rápidos no rodapé do overlay */
+  .nav-contato{position:absolute;bottom:44px;left:0;right:0;display:flex;justify-content:flex-start;align-items:center;gap:24px;padding:0 40px}
+  .nav-contato a{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(176,138,80,.5);border-radius:50%;color:var(--dourado);font-size:1.05rem;transition:all var(--transicao)}
+  .nav-contato a:hover{background:var(--dourado);color:#fff;border-color:var(--dourado)}
+  .nav-contato svg{width:20px;height:20px;fill:currentColor}
+  .rodape-grid{grid-template-columns:1fr;gap:36px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}

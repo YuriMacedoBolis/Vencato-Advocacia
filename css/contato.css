@@ -1,0 +1,57 @@
+/* =========================================================
+   Vencato e Cardoso — Contato (contato.css)
+   Canais de atendimento, formulário e mapa.
+   Requer style.css carregado antes.
+   ========================================================= */
+
+/* Contato */
+.contato{padding:80px 0 40px}
+.contato-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start}
+.bloco-tit{margin-bottom:26px}
+.bloco-tit h2{font-size:1.7rem;margin-top:12px}
+.bloco-tit p{font-size:.95rem;margin-top:8px;color:var(--grafite)}
+
+/* Canais clicáveis */
+.canal{display:flex;align-items:center;gap:18px;padding:18px 22px;border:1px solid var(--bege-escuro);background:#fff;position:relative;overflow:hidden;margin-bottom:14px;transition:border-color var(--transicao),transform var(--transicao)}
+.canal::before{content:'';position:absolute;left:0;top:0;height:100%;width:3px;background:var(--dourado);transform:scaleY(0);transform-origin:top;transition:transform var(--transicao)}
+.canal:hover{border-color:var(--dourado);transform:translateX(5px)}
+.canal:hover::before{transform:scaleY(1)}
+.canal-ic{width:44px;height:44px;flex:none;border:1px solid var(--dourado);color:var(--dourado-escuro);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all var(--transicao)}
+.canal:hover .canal-ic{background:var(--dourado);color:#fff}
+.canal-txt{flex:1;min-width:0}
+.canal-txt span{display:block;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cinza-claro)}
+.canal-txt strong{font-family:var(--sans);font-weight:600;font-size:1rem;color:var(--tinta);word-break:break-word}
+.canal-seta{color:var(--dourado);flex:none;transition:transform var(--transicao)}
+.canal:hover .canal-seta{transform:translateX(4px)}
+.canal.info{cursor:default}
+.canal.info:hover{transform:none;border-color:var(--bege-escuro)}
+.canal.info:hover::before{transform:scaleY(0)}
+.canal.info:hover .canal-ic{background:none;color:var(--dourado-escuro)}
+
+/* Formulário / Ouvidoria */
+.form-caixa{background:var(--marfim);border:1px solid var(--bege-escuro);padding:38px}
+.aviso{display:flex;gap:14px;background:rgba(176,138,80,.1);border-left:3px solid var(--dourado);padding:16px 18px;margin-bottom:26px;font-size:.88rem;color:var(--grafite)}
+.aviso strong{color:var(--dourado-escuro)}
+.campo{margin-bottom:18px}
+.campo label{display:block;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grafite);margin-bottom:7px}
+.campo label .obr{color:var(--dourado-escuro)}
+.campo input,.campo select,.campo textarea{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--tinta);background:#fff;border:1px solid var(--bege-escuro);padding:12px 14px;transition:border-color var(--transicao)}
+.campo textarea{resize:vertical;min-height:130px}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--dourado)}
+.form-linha{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-ok{display:none;background:rgba(37,150,90,.12);border-left:3px solid #2e8b57;padding:14px 16px;font-size:.9rem;color:#2e6b47;margin-top:14px}
+
+/* Mapa discreto */
+.mapa{padding:20px 0 100px}
+.mapa-cx{position:relative;border:1px solid var(--bege-escuro);overflow:hidden}
+.mapa-cx iframe{width:100%;height:280px;border:0;display:block;filter:grayscale(1) contrast(.92) opacity(.8);transition:filter .5s ease}
+.mapa-cx:hover iframe{filter:none}
+.mapa-legenda{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.mapa-legenda h3{font-size:1.2rem}
+.mapa-legenda a{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dourado-escuro)}
+
+/* Responsivo */
+@media(max-width:900px){
+  .contato-grid{grid-template-columns:1fr;gap:44px}
+}
+@media(max-width:520px){.form-linha{grid-template-columns:1fr}}
