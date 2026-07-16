@@ -75,6 +75,7 @@
 .valor .vnum{font-family:var(--serif);font-size:2.6rem;color:var(--dourado);line-height:1}
 .valor h3{color:#fff;font-size:1.4rem;margin:16px 0 10px}
 .valor p{color:rgba(255,255,255,.65);font-size:.92rem}
+.valores-intro{text-align:center;max-width:680px;margin:0 auto 48px;font-size:1.15rem;line-height:1.7;color:rgba(255,255,255,.85);font-style:italic}
 
 /* ---------- CTA ---------- */
 .inst-cta{background:var(--marfim);padding:90px 0;text-align:center}

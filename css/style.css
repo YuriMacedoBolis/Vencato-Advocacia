@@ -78,21 +78,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
 .link-seta:hover::after{transform:translateX(5px)}
 
 /* Placeholder de imagem */
-.img-placeholder{
-  position:relative;background:var(--bege);
-  border:1px dashed var(--bege-escuro);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--cinza-claro);text-align:center;
-  font-size:.8rem;letter-spacing:.04em;padding:20px;
-  min-height:220px;
-}
-.img-placeholder span{max-width:80%}
-.img-placeholder::after{
-  content:'IMAGEM';position:absolute;top:12px;left:12px;
-  font-size:.62rem;font-weight:700;letter-spacing:.2em;
-  color:var(--dourado-escuro);background:rgba(255,255,255,.6);
-  padding:4px 8px;
-}
+
 
 /* ---------- Cabeçalho / Nav flutuante ---------- */
 .cabecalho{
