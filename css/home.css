@@ -20,7 +20,7 @@
   position:absolute;inset:0;
   background:linear-gradient(135deg,#2B2721,#1F1C17);
   color:rgba(255,255,255,.28);
-  background: url('../assets/img/Ponte\ JK.jpg') center/cover no-repeat;
+  background: url('../assets/img/Ponte\ JK.webp') center/cover no-repeat;
 
 }
 
@@ -122,12 +122,12 @@
 .livro h3{font-size:1.2rem;margin:10px 0 12px}
 .livro p{font-size:.88rem;margin-bottom:16px}
 
-/* CTA final */
-.cta{background:var(--tinta);color:#fff;text-align:center;padding:100px 0}
-.cta .rotulo{color:var(--dourado);justify-content:center}
-.cta .rotulo::before,.cta .rotulo::after{background:var(--dourado)}
-.cta h2{color:#fff;font-size:clamp(2rem,4vw,3.2rem);margin:18px auto 20px;max-width:20ch}
-.cta p{color:rgba(255,255,255,.75);max-width:52ch;margin:0 auto 36px}
+/* CTA final — paleta clara, em harmonia com o restante da página */
+.cta{background:var(--marfim);color:var(--tinta);text-align:center;padding:100px 0;border-top:1px solid var(--bege-escuro)}
+.cta .rotulo{color:var(--dourado-escuro);justify-content:center}
+.cta .rotulo::before,.cta .rotulo::after{background:var(--dourado-escuro)}
+.cta h2{color:var(--tinta);font-size:clamp(2rem,4vw,3.2rem);margin:18px auto 20px;max-width:20ch}
+.cta p{color:var(--grafite);max-width:52ch;margin:0 auto 36px}
 
 /* ---------- Responsivo ---------- */
 @media(max-width:900px){
