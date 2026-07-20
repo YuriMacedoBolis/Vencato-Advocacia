@@ -7,7 +7,7 @@
 .inst-hero{position:relative;background:var(--tinta);color:#fff;padding:190px 0 170px;overflow:hidden}
 .inst-hero::after{content:'';position:absolute;right:-90px;top:-90px;width:380px;height:380px;border:1px solid rgba(176,138,80,.25);transform:rotate(45deg)}
 .inst-hero .container{position:relative;z-index:1;max-width:1080px}
-.inst-hero h1{color:#fff;font-size:clamp(2.6rem,6.5vw,5rem);max-width:15ch;margin:22px 0 0;line-height:1.04}
+.inst-hero h1{color:#fff;font-size:var(--h1-hero);max-width:15ch;margin:22px 0 0;line-height:1.04}
 .inst-hero h1 em{font-style:normal;color:var(--dourado)}
 .inst-hero .lead{color:rgba(255,255,255,.74);max-width:56ch;font-size:1.15rem;margin-top:28px}
 @keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
@@ -17,9 +17,11 @@
 
 /* ---------- Foto da equipe (card sobreposto ao hero) ---------- */
 .inst-foto{position:relative;z-index:2;margin-top:-110px;padding-bottom:70px}
-.inst-foto-img{aspect-ratio:16/7;background:linear-gradient(135deg,var(--bege),var(--bege-escuro));display:flex;align-items:center;justify-content:center;text-align:center;color:var(--grafite);font-size:.92rem;letter-spacing:.02em;padding:30px;position:relative;overflow:hidden;box-shadow:0 34px 70px -24px rgba(31,28,23,.55)}
+.inst-foto-media{position:relative}
+.inst-foto-media::before{content:'';position:absolute;top:20px;left:20px;right:-20px;bottom:-20px;border:1px solid rgba(176,138,80,.45);z-index:0;transition:all var(--transicao)}
+.inst-foto-media:hover::before{top:14px;left:14px;right:-14px;bottom:-14px}
+.inst-foto-img{aspect-ratio:16/7;background:linear-gradient(135deg,var(--bege),var(--bege-escuro));display:flex;align-items:center;justify-content:center;text-align:center;color:var(--grafite);font-size:.92rem;letter-spacing:.02em;padding:30px;position:relative;z-index:1;overflow:hidden;box-shadow:0 34px 70px -24px rgba(31,28,23,.55)}
 .inst-foto-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.inst-foto-img::after{content:'';position:absolute;inset:16px;border:1px solid rgba(176,138,80,.5);pointer-events:none}
 .inst-foto-cap{position:absolute;left:26px;bottom:22px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dourado-escuro)}
 .inst-foto-stats{position:relative;z-index:3;display:grid;grid-template-columns:repeat(3,1fr);max-width:680px;margin:-46px auto 0;background:var(--tinta);border:1px solid rgba(176,138,80,.3);box-shadow:0 24px 48px -20px rgba(31,28,23,.6)}
 .inst-foto-stats div{padding:24px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
@@ -40,7 +42,7 @@
 .inst-esferas{display:grid;grid-template-columns:1fr 1fr}
 .esfera{padding:90px clamp(24px,5vw,72px);transition:background var(--transicao)}
 .esfera-num{font-family:var(--serif);font-size:.82rem;letter-spacing:.24em}
-.esfera h2{font-size:clamp(1.6rem,3vw,2.3rem);margin:12px 0 20px}
+.esfera h2{font-size:var(--h2-sub);margin:12px 0 20px}
 .esfera p{margin-bottom:22px;max-width:46ch}
 .esfera ul{list-style:none;max-width:46ch}
 .esfera li{position:relative;padding:11px 0 11px 24px;font-size:.92rem;transition:padding var(--transicao)}
@@ -58,7 +60,7 @@
 /* ---------- Relação / princípios + chips de áreas ---------- */
 .inst-relacao{padding:100px 0;text-align:center}
 .inst-relacao .container{max-width:820px}
-.inst-relacao h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:16px 0 18px}
+.inst-relacao h2{font-size:var(--h2-sub);margin:16px 0 18px}
 .inst-relacao p{font-size:1.05rem}
 .inst-areas-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:36px}
 .inst-areas-chips span{border:1px solid var(--bege-escuro);padding:9px 16px;font-size:.82rem;letter-spacing:.03em;color:var(--grafite);transition:all var(--transicao);cursor:default}
@@ -72,24 +74,28 @@
 .valor::before{content:'';position:absolute;top:0;left:0;width:0;height:3px;background:var(--dourado);transition:width 400ms ease-in-out}
 .valor:hover::before{width:100%}
 .valor:hover{background:var(--tinta-suave)}
-.valor .vnum{font-family:var(--serif);font-size:2.6rem;color:var(--dourado);line-height:1}
-.valor h3{color:#fff;font-size:1.4rem;margin:16px 0 10px}
+.valor-icone{width:34px;height:34px;color:var(--dourado);stroke-width:1.6;display:block}
+.valor h3{color:#fff;font-size:var(--h3-destaque);margin:16px 0 10px}
 .valor p{color:rgba(255,255,255,.65);font-size:.92rem}
 .valores-intro{text-align:center;max-width:680px;margin:0 auto 48px;font-size:1.15rem;line-height:1.7;color:rgba(255,255,255,.85);font-style:italic}
 
 /* ---------- CTA ---------- */
 .inst-cta{background:var(--marfim);padding:90px 0;text-align:center}
-.inst-cta h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:16px auto 28px;max-width:20ch}
+.inst-cta h2{font-size:var(--h2-cta);margin:16px auto 28px;max-width:20ch}
 .inst-cta-acoes{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
 /* ---------- Responsivo ---------- */
 @media(max-width:820px){
   .inst-hero{padding:170px 0 130px}
   .inst-foto{margin-top:-84px}
-  .inst-foto-img{aspect-ratio:4/3}
-  .inst-foto-stats{grid-template-columns:1fr;max-width:320px}
-  .inst-foto-stats div{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+  /* no mobile a foto não pode cortar ninguém: exibe a imagem inteira em vez de preencher e recortar */
+  .inst-foto-img{aspect-ratio:auto;padding:0}
+  .inst-foto-img img{position:static;width:100%;height:auto;object-fit:contain}
+  .inst-foto-stats{grid-template-columns:1fr;max-width:280px;margin-top:-22px}
+  .inst-foto-stats div{padding:14px 16px;border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
   .inst-foto-stats div:last-child{border-bottom:none}
+  .inst-foto-stats strong{font-size:1.5rem}
+  .inst-foto-stats span{font-size:.62rem}
   .inst-esferas{grid-template-columns:1fr}
   .esfera{padding:60px 28px}
   .inst-valores-grid{grid-template-columns:1fr}

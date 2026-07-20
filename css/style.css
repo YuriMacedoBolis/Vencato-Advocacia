@@ -20,9 +20,21 @@
   --largura:1200px;
   --transicao:300ms ease-in-out;
   --transicao-nav:200ms ease-in-out;
+
+  /* Escala tipográfica compartilhada — mesma hierarquia em todas as páginas */
+  --h1-hero:clamp(2.6rem,6.4vw,5rem);      /* H1 de hero grande: Home, Institucional, Equipe */
+  --h1-topo:clamp(2.4rem,5vw,3.6rem);      /* H1 de topo compacto: Áreas, Blog, Contato */
+  --h2-primario:clamp(1.9rem,3.8vw,2.9rem);/* H2 de seção-âncora da Home */
+  --h2-secao:clamp(1.8rem,3.6vw,2.6rem);   /* H2 de abertura de seção nas páginas internas */
+  --h2-sub:clamp(1.6rem,3vw,2.3rem);       /* H2 de subseção dentro de uma página */
+  --h2-cta:clamp(2rem,4vw,3.2rem);         /* H2 de CTA de fechamento */
+  --h3-card:1.2rem;                        /* H3/H4 de card compacto */
+  --h3-destaque:1.5rem;                    /* H3 de card em destaque */
+  --h3-editorial:1.6rem;                   /* H3 editorial: capa de livro, painel, modal */
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{
   font-family:var(--sans);
@@ -95,17 +107,12 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
 .cabecalho-int{display:flex;align-items:center;justify-content:space-between;gap:20px}
 
 .marca{display:flex;align-items:center;gap:12px}
-.marca-simbolo{
-  width:38px;height:38px;flex:none;
-  border:1.5px solid currentColor;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-weight:700;font-size:1.1rem;
+.marca-logo{
+  height:40px;width:auto;display:block;
+  filter:brightness(0) invert(1);
+  transition:filter var(--transicao);
 }
-.marca-texto{line-height:1.15}
-.marca-texto strong{font-family:var(--serif);font-weight:600;font-size:1.05rem;display:block}
-.marca-texto small{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;opacity:.75}
-.cabecalho .marca{color:#fff}
-.cabecalho.rolado .marca{color:var(--tinta)}
+.cabecalho.rolado .marca-logo{filter:none}
 
 /* Navegação */
 .nav{display:flex;align-items:center;gap:34px}
@@ -171,32 +178,62 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
 /* ---------- Topo de página interna (Áreas / Blog / Contato) ---------- */
 .pagina-topo{background:var(--tinta);color:#fff;padding:170px 0 70px;position:relative;overflow:hidden}
 .pagina-topo::after{content:'';position:absolute;right:-80px;top:-80px;width:340px;height:340px;border:1px solid rgba(176,138,80,.25);transform:rotate(45deg)}
-.pagina-topo h1{color:#fff;font-size:clamp(2.4rem,5vw,3.6rem);margin:18px 0 14px}
+.pagina-topo h1{color:#fff;font-size:var(--h1-topo);margin:18px 0 14px}
 .pagina-topo p{color:rgba(255,255,255,.72);max-width:56ch;font-size:1.05rem}
 
 /* ---------- Rodapé ---------- */
 .rodape{background:var(--tinta-suave);color:rgba(255,255,255,.7);padding:40px 0 20px;font-size:.85rem}
 .rodape-grid{display:grid;grid-template-columns:1.4fr 1fr 1.6fr;gap:40px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.12)}
-.rodape h4{color:#fff;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+.rodape h2{color:#fff;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
 .rodape .marca{color:#fff;margin-bottom:12px}
+.rodape .marca-logo{filter:brightness(0) invert(1)}
 .rodape ul{list-style:none}
 .rodape ul li{margin-bottom:8px}
 .rodape a{transition:color var(--transicao)}
 .rodape a:hover{color:var(--dourado)}
 .rodape-contato li{display:flex;gap:10px;margin-bottom:9px;align-items:flex-start}
-.rodape-contato .ic{color:var(--dourado);flex:none}
+.rodape-contato .ic{color:var(--dourado);flex:none;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.rodape-contato .ic svg{width:16px;height:16px;display:block}
 .rodape-fim{padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.74rem;color:rgba(255,255,255,.45)}
 
 /* ---------- WhatsApp flutuante ---------- */
 .whats{
   position:fixed;bottom:26px;right:26px;z-index:90;
   width:58px;height:58px;border-radius:50%;
-  background:#25D366;display:flex;align-items:center;justify-content:center;
+  background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
   box-shadow:0 8px 24px rgba(37,211,102,.4);
   transition:transform var(--transicao);
 }
 .whats:hover{transform:scale(1.08)}
 .whats svg{width:30px;height:30px;fill:#fff}
+
+/* ---------- Preloader (animação de entrada: portas que se abrem) ---------- */
+.preloader{position:fixed;inset:0;z-index:1000;display:flex}
+.preloader-painel{
+  position:relative;width:50%;height:100%;
+  background:var(--tinta);overflow:hidden;
+  transition:transform 1.1s cubic-bezier(.65,0,.35,1);
+}
+.preloader-logo{
+  position:absolute;top:50%;width:82px;height:230px;overflow:hidden;
+  transition:transform 1.1s cubic-bezier(.65,0,.35,1);
+}
+.preloader-logo img{position:absolute;top:0;width:164px;height:230px;max-width:none}
+.preloader-logo-esq{right:0;transform:translateY(-50%);transform-origin:right center}
+.preloader-logo-esq img{left:0}
+.preloader-logo-dir{left:0;transform:translateY(-50%);transform-origin:left center}
+.preloader-logo-dir img{right:0}
+.preloader.abrir .preloader-esq{transform:translateX(-100%)}
+.preloader.abrir .preloader-dir{transform:translateX(100%)}
+.preloader.abrir .preloader-logo{transform:translateY(-50%) scale(.5)}
+.preloader.oculto{display:none}
+@media(max-width:600px){
+  .preloader-logo{width:53px;height:150px}
+  .preloader-logo img{width:106px;height:150px}
+}
+@media(prefers-reduced-motion:reduce){
+  .preloader{display:none}
+}
 
 /* ---------- Reveal ao rolar ---------- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
@@ -211,15 +248,17 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
     background:var(--tinta);
     flex-direction:column;align-items:flex-start;justify-content:center;
     gap:4px;padding:100px 40px 120px;
-    transform:none;opacity:0;visibility:hidden;
+    transform:none;opacity:0;visibility:hidden;pointer-events:none;
     transition:opacity .35s ease,visibility .35s ease;
   }
-  .nav.aberta{opacity:1;visibility:visible}
+  .nav.aberta{opacity:1;visibility:visible;pointer-events:auto}
   .nav-item{width:100%;text-align:left}
   .nav-link{color:#fff!important;font-size:1.35rem;font-weight:500;letter-spacing:.14em;padding:12px 0;justify-content:flex-start}
   .nav-link .seta{opacity:.6}
-  /* submenu Institucional: centralizado e discreto */
-  .dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;background:transparent;border:none;border-radius:0;margin:2px 0 6px;padding:0;text-align:left}
+  /* submenu Institucional: centralizado e discreto
+     (não força visibility/opacity aqui — precisa herdar o estado oculto do .nav fechado,
+     senão os links do submenu ficam clicáveis por trás do menu invisível) */
+  .dropdown{position:static;transform:none;box-shadow:none;background:transparent;border:none;border-radius:0;margin:2px 0 6px;padding:0;text-align:left}
   .dropdown::before{display:none}
   .dropdown a{color:rgba(255,255,255,.55);padding:6px 0 6px 16px;border-radius:0;font-size:.92rem;letter-spacing:.06em;justify-content:flex-start}
   .dropdown a:hover{background:none;color:#fff}
@@ -229,6 +268,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
   .hamburguer{display:flex;position:relative;z-index:3}
   /* estado aberto: logo e "X" em branco sobre o overlay escuro */
   .cabecalho.menu-aberto .marca{color:#fff}
+  .cabecalho.menu-aberto .marca-logo{filter:brightness(0) invert(1)}
   .cabecalho.menu-aberto .hamburguer span{background:#fff}
   .cabecalho.menu-aberto .hamburguer span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   .cabecalho.menu-aberto .hamburguer span:nth-child(2){opacity:0}
@@ -237,7 +277,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
   .nav-contato{position:absolute;bottom:44px;left:0;right:0;display:flex;justify-content:flex-start;align-items:center;gap:24px;padding:0 40px}
   .nav-contato a{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(176,138,80,.5);border-radius:50%;color:var(--dourado);font-size:1.05rem;transition:all var(--transicao)}
   .nav-contato a:hover{background:var(--dourado);color:#fff;border-color:var(--dourado)}
-  .nav-contato svg{width:20px;height:20px;fill:currentColor}
+  .nav-contato svg{width:20px;height:20px}
   .rodape-grid{grid-template-columns:1fr;gap:36px}
 }
 @media(prefers-reduced-motion:reduce){

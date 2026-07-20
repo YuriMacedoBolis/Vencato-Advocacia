@@ -8,7 +8,7 @@
 .eq-hero{position:relative;background:var(--tinta);color:#fff;padding:190px 0 84px;overflow:hidden}
 .eq-hero::after{content:'';position:absolute;right:-90px;top:-90px;width:380px;height:380px;border:1px solid rgba(176,138,80,.25);transform:rotate(45deg)}
 .eq-hero .container{position:relative;z-index:1}
-.eq-hero h1{color:#fff;font-size:clamp(2.6rem,6.5vw,5rem);margin:22px 0 0}
+.eq-hero h1{color:#fff;font-size:var(--h1-hero);margin:22px 0 0}
 .eq-hero .lead{color:rgba(255,255,255,.74);max-width:54ch;font-size:1.15rem;margin-top:24px}
 @keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 .eq-hero .rotulo{animation:heroUp .7s ease both}
@@ -33,7 +33,7 @@
 .socio-idx{position:absolute;top:-30px;left:-10px;font-family:var(--serif);font-size:clamp(3.5rem,8vw,7rem);color:var(--dourado);opacity:.16;line-height:1;pointer-events:none;z-index:2}
 
 .socio-corpo .rotulo{margin-bottom:16px}
-.socio-corpo h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.socio-corpo h2{font-size:var(--h2-cta)}
 .socio-corpo .cargo{color:var(--dourado-escuro);font-size:.76rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin:8px 0 22px}
 .socio-corpo p{margin-bottom:16px}
 
@@ -49,7 +49,7 @@
 /* ---------- Colaboradores (cards com foto) ---------- */
 .assoc-ed{background:var(--marfim);padding:90px 0}
 .eq-topo{margin-bottom:36px}
-.eq-topo h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-top:12px}
+.eq-topo h2{font-size:var(--h2-sub);margin-top:12px}
 .assoc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .colab{position:relative;background:#fff;border:1px solid var(--bege-escuro);overflow:hidden;transition:transform var(--transicao),box-shadow var(--transicao)}
 .colab:hover{transform:translateY(-6px);box-shadow:0 26px 54px -22px rgba(31,28,23,.28)}
@@ -58,13 +58,13 @@
 .colab:hover .colab-foto img{transform:scale(1.06)}
 .colab-idx{position:absolute;top:0;left:0;z-index:2;font-family:var(--serif);color:#fff;background:var(--dourado);width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
 .colab-info{padding:22px 24px 28px}
-.colab-info h3{font-size:1.2rem}
+.colab-info h3{font-size:var(--h3-card)}
 .colab-cargo{color:var(--dourado-escuro);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin:7px 0 13px}
 .colab-bio{font-size:.9rem;color:var(--grafite)}
 
 /* ---------- CTA ---------- */
 .eq-cta{background:var(--tinta);color:#fff;padding:90px 0;text-align:center}
-.eq-cta h2{color:#fff;font-size:clamp(1.8rem,3.4vw,2.6rem);margin:16px auto 28px;max-width:22ch}
+.eq-cta h2{color:#fff;font-size:var(--h2-cta);margin:16px auto 28px;max-width:22ch}
 .eq-cta .rotulo{color:var(--dourado)}
 .eq-cta-acoes{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 

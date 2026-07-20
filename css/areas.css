@@ -7,7 +7,7 @@
 /* Soluções */
 .solucoes{padding:70px 0 110px;background:var(--marfim)}
 .solucoes-topo{text-align:center;max-width:620px;margin:0 auto 44px}
-.solucoes-topo h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:14px}
+.solucoes-topo h2{font-size:var(--h2-secao);margin-bottom:14px}
 .solucoes-topo p{color:var(--grafite)}
 .painel-tabs{display:none}
 
@@ -17,7 +17,7 @@
 .lado-fisica{left:0}
 .lado-juridica{left:50%}
 .lado-cab{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
-.lado-cab h3{font-size:1.6rem}
+.lado-cab h3{font-size:var(--h3-editorial)}
 .lado-cab span{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--dourado-escuro)}
 .lado>p{font-size:.9rem;color:var(--grafite);margin-bottom:20px}
 .lado-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -49,7 +49,7 @@
 .modal-fechar{position:absolute;top:16px;right:16px;width:38px;height:38px;border:1px solid var(--bege-escuro);background:none;cursor:pointer;font-size:1.2rem;line-height:1;color:var(--grafite);display:flex;align-items:center;justify-content:center;transition:all var(--transicao)}
 .modal-fechar:hover{background:var(--tinta);color:#fff;border-color:var(--tinta)}
 .modal .rotulo{color:var(--dourado-escuro)}
-.modal h3{font-size:1.7rem;margin:14px 0 22px}
+.modal h3{font-size:var(--h3-editorial);margin:14px 0 22px}
 .modal-lista{list-style:none}
 .modal-lista li{position:relative;padding:9px 0 9px 24px;font-size:.94rem;border-bottom:1px solid var(--marfim)}
 .modal-lista li:last-child{border-bottom:none}
@@ -65,6 +65,12 @@
   .painel-areas{height:auto;overflow:hidden;display:flex;flex-wrap:nowrap;align-items:flex-start}
   .lado{position:static;flex:0 0 100%;width:100%;height:auto;overflow:visible;padding:36px 26px;transition:transform .5s ease-in-out}
   .painel-areas.pj .lado{transform:translateX(-100%)}
+  /* garante que o painel fora de tela nunca receba toque, mesmo durante a transição */
+  .lado-juridica{pointer-events:none}
+  .painel-areas.pj .lado-fisica{pointer-events:none}
+  .painel-areas.pj .lado-juridica{pointer-events:auto}
+  .tile{touch-action:manipulation}
+  .painel-tab{touch-action:manipulation}
   .overlay{display:none}
   .lado-grid{grid-template-columns:1fr 1fr;gap:10px}
 }
