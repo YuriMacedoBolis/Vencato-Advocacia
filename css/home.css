@@ -18,7 +18,7 @@
 }
 .hero-img{
   position:absolute;inset:0;
-  background:linear-gradient(135deg,#2B2721,#1F1C17);
+  background:linear-gradient(135deg,var(--tinta-suave),var(--tinta));
   color:rgba(255,255,255,.28);
   background: url('../assets/img/Ponte\ JK.webp') center/cover no-repeat;
 
@@ -35,13 +35,6 @@
 .hero h1 em{font-style:normal;color:var(--dourado)}
 .hero p{color:rgba(255,255,255,.82);font-size:1.15rem;max-width:44ch;margin-bottom:40px}
 .hero-acoes{display:flex;gap:16px;flex-wrap:wrap}
-.hero-scroll{
-  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
-  z-index:2;color:rgba(255,255,255,.6);font-size:.66rem;
-  letter-spacing:.24em;text-transform:uppercase;text-align:center;
-}
-.hero-scroll::after{content:'';display:block;width:1px;height:40px;background:rgba(255,255,255,.4);margin:12px auto 0;animation:desce 2s ease-in-out infinite}
-@keyframes desce{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
 
 /* ---------- Seções genéricas ---------- */
 .secao{padding:110px 0}
@@ -145,8 +138,6 @@
   .socio{grid-template-columns:1fr}
   .livro{grid-template-columns:1fr}
   .secao{padding:72px 0}
-  /* esconde o indicador de rolagem: em telas baixas ele fica espremido contra os botões do hero */
-  .hero-scroll{display:none}
   .hero-conteudo{padding-bottom:60px}
 }
 @media(max-width:520px){

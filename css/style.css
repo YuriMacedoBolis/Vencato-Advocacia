@@ -6,17 +6,17 @@
 
 :root{
   --branco:#FFFFFF;
-  --marfim:#FAF7F1;
-  --bege:#EFE8DA;
-  --bege-escuro:#D9CDB6;
-  --dourado:#B08A50;
-  --dourado-escuro:#8C6B39;
-  --tinta:#1F1C17;
-  --tinta-suave:#2B2721;
-  --grafite:#4C463B;
-  --cinza-claro:#8A8377;
-  --serif:'Fraunces',Georgia,serif;
-  --sans:'Archivo',system-ui,sans-serif;
+  --marfim:#FFFFFF;
+  --bege:#F2F0ED;
+  --bege-escuro:#E0DCD6;
+  --dourado:#CEAB8D;
+  --dourado-escuro:#966841;
+  --tinta:#1E1E1E;
+  --tinta-suave:#2B2B2B;
+  --grafite:#3A3A3A;
+  --cinza-claro:#8A8A8A;
+  --serif:'Cinzel',Georgia,serif;
+  --sans:'Roboto',system-ui,sans-serif;
   --largura:1200px;
   --transicao:300ms ease-in-out;
   --transicao-nav:200ms ease-in-out;
@@ -113,6 +113,16 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
   transition:filter var(--transicao);
 }
 .cabecalho.rolado .marca-logo{filter:none}
+/* Logo do cabeçalho, em tamanho maior: a marca (ícone) fica sempre dourada;
+   a escrita ao lado mantém a mesma configuração de cores de antes (branca sobre o hero
+   transparente / menu mobile, escura quando o cabeçalho rola sobre fundo claro) */
+.marca-logo-icone{height:56px;width:auto;display:block}
+.marca-logo-texto{
+  height:36px;width:auto;display:block;
+  filter:brightness(0) invert(1);
+  transition:filter var(--transicao);
+}
+.cabecalho.rolado .marca-logo-texto{filter:none}
 
 /* Navegação */
 .nav{display:flex;align-items:center;gap:34px}
@@ -183,10 +193,14 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
 
 /* ---------- Rodapé ---------- */
 .rodape{background:var(--tinta-suave);color:rgba(255,255,255,.7);padding:40px 0 20px;font-size:.85rem}
-.rodape-grid{display:grid;grid-template-columns:1.4fr 1fr 1.6fr;gap:40px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.12)}
+.rodape-grid{display:grid;grid-template-columns:1.4fr 1fr 1.6fr;gap:40px;padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.12);align-items:center}
 .rodape h2{color:#fff;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;font-weight:600}
 .rodape .marca{color:#fff;margin-bottom:12px}
-.rodape .marca-logo{filter:brightness(0) invert(1)}
+/* Logo do rodapé: ícone e nome sempre na paleta dourada, com o ícone
+   visivelmente maior do que a escrita ao lado */
+.rodape-marca{margin-top:22px}
+.rodape .marca-logo-icone{height:64px}
+.rodape .marca-logo-texto{height:36px;filter:brightness(0) invert(1)}
 .rodape ul{list-style:none}
 .rodape ul li{margin-bottom:8px}
 .rodape a{transition:color var(--transicao)}
@@ -255,20 +269,26 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
   .nav-item{width:100%;text-align:left}
   .nav-link{color:#fff!important;font-size:1.35rem;font-weight:500;letter-spacing:.14em;padding:12px 0;justify-content:flex-start}
   .nav-link .seta{opacity:.6}
-  /* submenu Institucional: centralizado e discreto
-     (não força visibility/opacity aqui — precisa herdar o estado oculto do .nav fechado,
-     senão os links do submenu ficam clicáveis por trás do menu invisível) */
-  .dropdown{position:static;transform:none;box-shadow:none;background:transparent;border:none;border-radius:0;margin:2px 0 6px;padding:0;text-align:left}
+  /* submenu Institucional: sanfona/accordion controlada por toque (classe .aberto via JS),
+     já que não existe :hover em telas de toque. A altura anima com max-height. */
+  .dropdown{
+    position:static;transform:none;box-shadow:none;background:transparent;border:none;border-radius:0;
+    margin:0;padding:0;text-align:left;
+    max-height:0;opacity:1;visibility:visible;overflow:hidden;
+    transition:max-height .35s ease;
+  }
   .dropdown::before{display:none}
+  .nav-item-dropdown.aberto .dropdown{max-height:160px;margin:2px 0 6px}
+  .nav-item-dropdown.aberto .nav-link .seta{transform:rotate(225deg);opacity:1}
   .dropdown a{color:rgba(255,255,255,.55);padding:6px 0 6px 16px;border-radius:0;font-size:.92rem;letter-spacing:.06em;justify-content:flex-start}
   .dropdown a:hover{background:none;color:#fff}
   .dropdown a:hover::before{width:0;height:0}
   /* logo e botão sempre acima do overlay */
   .marca{position:relative;z-index:3}
   .hamburguer{display:flex;position:relative;z-index:3}
-  /* estado aberto: logo e "X" em branco sobre o overlay escuro */
+  /* estado aberto: "X" e escrita da logo em branco sobre o overlay escuro; ícone permanece dourado */
   .cabecalho.menu-aberto .marca{color:#fff}
-  .cabecalho.menu-aberto .marca-logo{filter:brightness(0) invert(1)}
+  .cabecalho.menu-aberto .marca-logo-texto{filter:brightness(0) invert(1)}
   .cabecalho.menu-aberto .hamburguer span{background:#fff}
   .cabecalho.menu-aberto .hamburguer span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   .cabecalho.menu-aberto .hamburguer span:nth-child(2){opacity:0}
@@ -279,6 +299,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
   .nav-contato a:hover{background:var(--dourado);color:#fff;border-color:var(--dourado)}
   .nav-contato svg{width:20px;height:20px}
   .rodape-grid{grid-template-columns:1fr;gap:36px}
+  .rodape-marca{margin-top:0}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}

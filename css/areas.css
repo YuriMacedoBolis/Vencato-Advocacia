@@ -9,17 +9,25 @@
 .solucoes-topo{text-align:center;max-width:620px;margin:0 auto 44px}
 .solucoes-topo h2{font-size:var(--h2-secao);margin-bottom:14px}
 .solucoes-topo p{color:var(--grafite)}
-.painel-tabs{display:none}
+/* ---- Blocos empilhados: texto + grid de cards, alternando cores ---- */
+.bloco-linha{display:grid;grid-template-columns:1fr 1fr;max-width:1160px;margin:0 auto;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(31,28,23,.16);border:1px solid var(--bege-escuro)}
+.bloco-linha-pj{margin-top:56px}
 
-/* ---- Sliding Overlay Panel ---- */
-.painel-areas{position:relative;max-width:1120px;margin:0 auto;height:600px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(31,28,23,.16);border:1px solid var(--bege-escuro);background:#fff}
-.lado{position:absolute;top:0;height:100%;width:50%;padding:44px 42px;overflow-y:auto}
-.lado-fisica{left:0}
-.lado-juridica{left:50%}
-.lado-cab{display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
-.lado-cab h3{font-size:var(--h3-editorial)}
-.lado-cab span{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--dourado-escuro)}
-.lado>p{font-size:.9rem;color:var(--grafite);margin-bottom:20px}
+.bloco-texto{padding:54px 46px;display:flex;flex-direction:column;justify-content:center}
+.bloco-texto .rotulo{font-size:1rem;letter-spacing:.14em}
+.bloco-texto h3{font-size:1.9rem;margin:16px 0 14px;max-width:14ch}
+.bloco-texto p{font-size:.92rem;max-width:34ch}
+
+.bloco-claro{background:#fff;color:var(--grafite)}
+.bloco-claro.bloco-texto .rotulo{color:var(--dourado-escuro)}
+.bloco-claro.bloco-texto h3{color:var(--tinta)}
+
+.bloco-escuro{background:var(--tinta);color:rgba(255,255,255,.85)}
+.bloco-escuro.bloco-texto .rotulo{color:var(--dourado)}
+.bloco-escuro.bloco-texto h3{color:#fff}
+.bloco-escuro.bloco-texto p{color:rgba(255,255,255,.72)}
+
+.bloco-cards{padding:40px 36px}
 .lado-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tile{border:1px solid var(--bege-escuro);padding:15px 16px;position:relative;overflow:hidden;cursor:pointer;transition:border-color var(--transicao),transform var(--transicao)}
 .tile::before{content:'';position:absolute;left:0;top:0;height:100%;width:0;background:var(--marfim);z-index:0;transition:width var(--transicao)}
@@ -28,18 +36,11 @@
 .tile h4{font-size:1rem;position:relative;z-index:1}
 .tile p{font-size:.78rem;color:var(--cinza-claro);margin-top:3px;position:relative;z-index:1}
 
-/* Painel deslizante (overlay) */
-.overlay{position:absolute;top:0;left:50%;width:50%;height:100%;z-index:5;background:var(--tinta);color:#fff;transition:transform .5s ease-in-out;overflow:hidden}
-.overlay::after{content:'';position:absolute;left:-60px;bottom:-60px;width:220px;height:220px;border:1px solid rgba(176,138,80,.3);transform:rotate(45deg)}
-.painel-areas.pj .overlay{transform:translateX(-100%)}
-.overlay-conteudo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 48px;transition:opacity .35s ease;z-index:2}
-.overlay-conteudo .rotulo{color:var(--dourado);justify-content:center;margin-bottom:16px}
-.overlay-conteudo h3{color:#fff;font-size:1.9rem;margin-bottom:14px;max-width:14ch}
-.overlay-conteudo p{color:rgba(255,255,255,.72);font-size:.92rem;max-width:34ch;margin-bottom:30px}
-.overlay-para-pj{opacity:1}
-.overlay-para-pf{opacity:0;pointer-events:none}
-.painel-areas.pj .overlay-para-pj{opacity:0;pointer-events:none}
-.painel-areas.pj .overlay-para-pf{opacity:1;pointer-events:auto}
+.bloco-escuro.bloco-cards .tile{border-color:rgba(255,255,255,.18)}
+.bloco-escuro.bloco-cards .tile::before{background:rgba(255,255,255,.07)}
+.bloco-escuro.bloco-cards .tile:hover{border-color:var(--dourado)}
+.bloco-escuro.bloco-cards .tile h4{color:#fff}
+.bloco-escuro.bloco-cards .tile p{color:rgba(255,255,255,.6)}
 
 /* ---- Modal de detalhe da área ---- */
 .modal-fundo{position:fixed;inset:0;z-index:300;background:rgba(31,28,23,.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
@@ -57,21 +58,12 @@
 .modal-lista .grupo{font-family:var(--sans);font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dourado-escuro);padding:18px 0 4px;border:none}
 .modal-lista .grupo::before{display:none}
 
-/* ---- Responsivo: slider horizontal (mantém a animação; todas as áreas visíveis) ---- */
+/* ---- Responsivo: blocos empilham em coluna única ---- */
 @media(max-width:768px){
-  .painel-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:1120px;margin:0 auto 16px}
-  .painel-tab{font-family:var(--sans);font-weight:600;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:14px 10px;border:1px solid var(--bege-escuro);background:#fff;color:var(--grafite);cursor:pointer;transition:all var(--transicao)}
-  .painel-tab.ativo{background:var(--tinta);color:#fff;border-color:var(--tinta)}
-  .painel-areas{height:auto;overflow:hidden;display:flex;flex-wrap:nowrap;align-items:flex-start}
-  .lado{position:static;flex:0 0 100%;width:100%;height:auto;overflow:visible;padding:36px 26px;transition:transform .5s ease-in-out}
-  .painel-areas.pj .lado{transform:translateX(-100%)}
-  /* garante que o painel fora de tela nunca receba toque, mesmo durante a transição */
-  .lado-juridica{pointer-events:none}
-  .painel-areas.pj .lado-fisica{pointer-events:none}
-  .painel-areas.pj .lado-juridica{pointer-events:auto}
+  .bloco-linha{grid-template-columns:1fr}
+  .bloco-texto{padding:36px 26px}
+  .bloco-cards{padding:30px 24px}
   .tile{touch-action:manipulation}
-  .painel-tab{touch-action:manipulation}
-  .overlay{display:none}
   .lado-grid{grid-template-columns:1fr 1fr;gap:10px}
 }
 @media(max-width:380px){
