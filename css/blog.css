@@ -24,15 +24,10 @@
 
 /* Blog */
 .blog{padding:20px 0 100px;background:var(--marfim)}
-.nota-blog{display:flex;gap:12px;background:rgba(176,138,80,.1);border-left:3px solid var(--dourado);padding:14px 18px;margin-bottom:34px;font-size:.86rem;color:var(--grafite)}
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.post{background:#fff;border:1px solid var(--bege-escuro);display:flex;flex-direction:column;transition:transform var(--transicao),box-shadow var(--transicao)}
-.post:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(31,28,23,.1)}
-.post-img{aspect-ratio:16/10;background:var(--bege);border-bottom:1px solid var(--bege-escuro);display:flex;align-items:center;justify-content:center;color:var(--cinza-claro);font-size:.7rem;letter-spacing:.1em}
-.post-corpo{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
-.post-meta{display:flex;justify-content:space-between;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:12px}
-.post h3{font-size:var(--h3-card);margin-bottom:10px}
-.post p{font-size:.88rem;color:var(--grafite);margin-bottom:18px;flex:1}
+.blog-vazio{text-align:center;max-width:520px;margin:0 auto;padding:64px 32px;border:1px dashed var(--bege-escuro);background:#fff}
+.blog-vazio-ic{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border:1px solid var(--dourado);border-radius:50%;color:var(--dourado-escuro);font-size:1.3rem;margin-bottom:20px}
+.blog-vazio h3{font-size:var(--h3-card);margin-bottom:10px}
+.blog-vazio p{font-size:.92rem;color:var(--grafite);max-width:40ch;margin:0 auto}
 
 /* Modal (detalhe do livro) */
 .modal-fundo{position:fixed;inset:0;z-index:300;background:rgba(31,28,23,.55);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
@@ -51,6 +46,4 @@
 @media(max-width:900px){
   .livro-card,.livro-card:nth-child(even){flex-direction:column;text-align:center;padding:32px}
   .livro-capa{width:170px}
-  .blog-grid{grid-template-columns:1fr}
 }
-@media(max-width:700px){.blog-grid{grid-template-columns:1fr}}
