@@ -33,29 +33,43 @@
 .inst-manifesto{background:var(--marfim);padding:96px 0;position:relative;overflow:hidden}
 .inst-manifesto::before{content:'\201C';position:absolute;top:-40px;left:3%;font-family:var(--serif);font-size:20rem;line-height:1;color:rgba(176,138,80,.12);pointer-events:none}
 .inst-manifesto .container{position:relative;z-index:1;max-width:960px}
-.inst-manifesto p{font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;color:var(--tinta)}
+.inst-manifesto p{font-family:var(--sans);font-weight:400;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.5;color:var(--tinta)}
 .inst-manifesto p .destaque{color:var(--dourado-escuro)}
-.inst-manifesto p:first-of-type::first-letter{font-size:3.4em;line-height:.78;float:left;padding:8px 16px 0 0;color:var(--dourado);font-weight:600}
-.inst-assinatura{font-family:var(--serif);font-style:italic;font-size:1.12rem;color:var(--dourado-escuro);margin-top:30px}
+.inst-manifesto p:first-of-type::first-letter{font-family:var(--serif);font-size:3.4em;line-height:.78;float:left;padding:8px 16px 0 0;color:var(--dourado);font-weight:600}
+.inst-assinatura{font-family:var(--sans);font-style:italic;font-size:1.12rem;color:var(--dourado-escuro);margin-top:30px}
 
-/* ---------- Duas esferas (Extrajudicial × Judicial) ---------- */
-.inst-esferas{display:grid;grid-template-columns:1fr 1fr}
-.esfera{padding:90px clamp(24px,5vw,72px);transition:background var(--transicao)}
-.esfera-num{font-family:var(--serif);font-size:.82rem;letter-spacing:.24em}
-.esfera h2{font-size:var(--h2-sub);margin:12px 0 20px}
-.esfera p{margin-bottom:22px;max-width:46ch}
+/* ---------- Duas esferas (Extrajudicial × Judicial) ----------
+   Cards claros com destaque dourado no hover, seguindo a mesma
+   paleta e o mesmo padrão de interação de .dif/.valor/.assoc. */
+.inst-esferas{background:var(--tinta);padding:100px 0;position:relative;overflow:hidden}
+.inst-esferas::after{content:'';position:absolute;right:-90px;top:-90px;width:380px;height:380px;border:1px solid rgba(176,138,80,.25);transform:rotate(45deg)}
+.inst-esferas::before{content:'';position:absolute;left:-90px;bottom:-90px;width:380px;height:380px;border:1px solid rgba(176,138,80,.25);transform:rotate(45deg)}
+.esferas-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.esfera{
+  position:relative;overflow:hidden;
+  background:var(--branco);
+  border:1px solid var(--bege-escuro);
+  border-radius:14px;
+  padding:48px 44px;
+  color:var(--grafite);
+  transition:background var(--transicao),border-color var(--transicao),transform var(--transicao),box-shadow var(--transicao);
+}
+.esfera::before{content:'';position:absolute;top:0;left:0;width:0;height:3px;background:var(--dourado);transition:width 400ms ease-in-out}
+.esfera:hover::before{width:100%}
+.esfera:hover{
+  background:var(--marfim);
+  border-color:var(--dourado);
+  transform:translateY(-6px);
+  box-shadow:0 26px 54px -22px rgba(0,0,0,.35);
+}
+.esfera-num{font-family:var(--serif);font-size:.82rem;letter-spacing:.24em;color:var(--dourado-escuro)}
+.esfera h2{color:var(--tinta);font-size:var(--h2-sub);margin:12px 0 20px}
+.esfera p{margin-bottom:22px;max-width:46ch;color:var(--grafite)}
 .esfera ul{list-style:none;max-width:46ch}
-.esfera li{position:relative;padding:11px 0 11px 24px;font-size:.92rem;transition:padding var(--transicao)}
+.esfera li{position:relative;padding:11px 0 11px 24px;font-size:.92rem;border-top:1px solid var(--bege-escuro);transition:padding var(--transicao)}
+.esfera li:first-child{border-top:none}
 .esfera li::before{content:'';position:absolute;left:0;top:18px;width:7px;height:7px;border-right:1.5px solid var(--dourado);border-bottom:1.5px solid var(--dourado);transform:rotate(-45deg)}
 .esfera li:hover{padding-left:30px}
-.esfera-clara{background:#fff;color:var(--grafite)}
-.esfera-clara .esfera-num{color:var(--dourado-escuro)}
-.esfera-clara h2{color:var(--tinta)}
-.esfera-clara li{border-top:1px solid rgba(31,28,23,.07)}
-.esfera-escura{background:var(--tinta);color:rgba(255,255,255,.72)}
-.esfera-escura .esfera-num{color:var(--dourado)}
-.esfera-escura h2{color:#fff}
-.esfera-escura li{border-top:1px solid rgba(255,255,255,.1)}
 
 /* ---------- Relação / princípios + chips de áreas ---------- */
 .inst-relacao{padding:100px 0;text-align:center}
@@ -85,6 +99,10 @@
 .inst-cta-acoes{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
 /* ---------- Responsivo ---------- */
+@media(max-width:1440px){
+  .inst-hero{padding:160px 0 130px}
+  .inst-foto{margin-top:-90px}
+}
 @media(max-width:820px){
   .inst-hero{padding:170px 0 130px}
   .inst-foto{margin-top:-84px}
@@ -96,8 +114,8 @@
   .inst-foto-stats div:last-child{border-bottom:none}
   .inst-foto-stats strong{font-size:1.5rem}
   .inst-foto-stats span{font-size:.62rem}
-  .inst-esferas{grid-template-columns:1fr}
-  .esfera{padding:60px 28px}
+  .esferas-grid{grid-template-columns:1fr;gap:24px}
+  .esfera{padding:40px 28px}
   .inst-valores-grid{grid-template-columns:1fr}
   .valor{border-right:none;border-bottom:1px solid rgba(255,255,255,.12)}
   .valor:last-child{border-bottom:none}

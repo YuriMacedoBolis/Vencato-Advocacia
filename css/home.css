@@ -126,6 +126,17 @@
 .cta p{color:var(--grafite);max-width:52ch;margin:0 auto 36px}
 
 /* ---------- Responsivo ---------- */
+@media(max-width:1440px){
+  .secao{padding:84px 0}
+  .grid-dif{grid-template-columns:repeat(3,1fr)}
+  .dif{padding:36px 28px}
+  .sobre-grid{gap:48px}
+  .sobre-stats{gap:32px}
+  .grid-areas{grid-template-columns:repeat(4,1fr)}
+  .area{padding:28px 22px;min-height:190px}
+  .socio{grid-template-columns:220px 1fr}
+  .socio-info{padding:28px 26px}
+}
 @media(max-width:900px){
   .grid-dif{grid-template-columns:1fr}
   .dif{border-right:none;border-bottom:1px solid var(--bege-escuro)}
