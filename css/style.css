@@ -21,13 +21,16 @@
   --transicao:300ms ease-in-out;
   --transicao-nav:200ms ease-in-out;
 
-  /* Escala tipográfica compartilhada — mesma hierarquia em todas as páginas */
-  --h1-hero:clamp(2.6rem,6.4vw,5rem);      /* H1 de hero grande: Home, Institucional, Equipe */
-  --h1-topo:clamp(2.4rem,5vw,3.6rem);      /* H1 de topo compacto: Áreas, Blog, Contato */
-  --h2-primario:clamp(1.9rem,3.8vw,2.9rem);/* H2 de seção-âncora da Home */
-  --h2-secao:clamp(1.8rem,3.6vw,2.6rem);   /* H2 de abertura de seção nas páginas internas */
-  --h2-sub:clamp(1.6rem,3vw,2.3rem);       /* H2 de subseção dentro de uma página */
-  --h2-cta:clamp(2rem,4vw,3.2rem);         /* H2 de CTA de fechamento */
+  /* Escala tipográfica compartilhada — mesma hierarquia em todas as páginas.
+     Coeficientes vw calibrados para só atingir o teto (max) perto de ~1900px:
+     em notebooks (~1280–1440px) o clamp antigo já saturava no valor de monitor
+     grande, fazendo o texto parecer "no zoom" numa tela mais estreita. */
+  --h1-hero:clamp(2.3rem,2.9vw,3.4rem);    /* H1 de título grande: mesmo tamanho em todas as páginas */
+  --h1-topo:clamp(2.3rem,2.9vw,3.4rem);    /* H1 de título grande: mesmo tamanho em todas as páginas */
+  --h2-primario:clamp(1.9rem,2.45vw,2.9rem);/* H2 de seção-âncora da Home */
+  --h2-secao:clamp(1.8rem,2.2vw,2.6rem);   /* H2 de abertura de seção nas páginas internas */
+  --h2-sub:clamp(1.6rem,1.95vw,2.3rem);    /* H2 de subseção dentro de uma página */
+  --h2-cta:clamp(2rem,2.7vw,3.2rem);       /* H2 de CTA de fechamento */
   --h3-card:1.2rem;                        /* H3/H4 de card compacto */
   --h3-destaque:1.5rem;                    /* H3 de card em destaque */
   --h3-editorial:1.6rem;                   /* H3 editorial: capa de livro, painel, modal */
@@ -252,6 +255,16 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:600;color:var(--tinta);line-hei
 /* ---------- Reveal ao rolar ---------- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visivel{opacity:1;transform:none}
+
+/* ---------- Notebooks (faixa entre o menu mobile e monitores grandes) ----------
+   Sem isso, o layout ficava desenhado só para telas ≥1900px e para o menu mobile,
+   deixando 901–1440px (a maioria dos notebooks) com espaçamentos e fontes
+   pensados para monitor grande, mas numa largura bem menor — daí o efeito "zoom". */
+@media(max-width:1440px){
+  .container{padding:0 20px}
+  .nav{gap:24px}
+  .cabecalho-int{gap:14px}
+}
 
 /* ---------- Responsivo (comum) ---------- */
 @media(max-width:900px){
