@@ -243,21 +243,16 @@ const formOk=document.getElementById('form-ok');
 const formBtn=form.querySelector('button[type="submit"]');
 const formBtnTexto=formBtn.textContent;
 
-// Máscara de telefone: (00) 0 0000-0000 / (00) 0000-0000
+// Máscara de telefone: (00) 0000-0000
 const campoTelefone=document.getElementById('telefone');
 campoTelefone.addEventListener('input',()=>{
-  let d=campoTelefone.value.replace(/\D/g,'').slice(0,11);
-  if(d.length>7){
-    campoTelefone.value=d.replace(/^(\d{2})(\d)(\d{4})(\d{0,4}).*/,'($1) $2 $3-$4');
-  }else if(d.length>3){
-    campoTelefone.value=d.replace(/^(\d{2})(\d)(\d{0,4}).*/,'($1) $2 $3');
-  }else if(d.length>2){
-    campoTelefone.value=d.replace(/^(\d{2})(\d).*/,'($1) $2');
-  }else if(d.length>0){
-    campoTelefone.value=`(${d}`;
-  }else{
-    campoTelefone.value='';
-  }
+  const d=campoTelefone.value.replace(/\D/g,'').slice(0,10);
+  let v='';
+  if(d.length>0)v='('+d.slice(0,2);
+  if(d.length>=2)v+=') ';
+  if(d.length>2)v+=d.slice(2,6);
+  if(d.length>6)v+='-'+d.slice(6,10);
+  campoTelefone.value=v;
 });
 
 form.addEventListener('submit',async e=>{
